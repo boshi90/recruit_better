@@ -1,6 +1,11 @@
 class User < ApplicationRecord
   # Direct associations
 
+  has_many   :sent_review_requests,
+             :class_name => "ReviewRequest",
+             :foreign_key => "applicant_id",
+             :dependent => :destroy
+
   has_many   :feedbacks,
              :dependent => :destroy
 
