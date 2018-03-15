@@ -24,8 +24,11 @@
         <td><%= feedback.reviewer.created_at %></td>
         <td>
           <a href="/feedbacks/<%= feedback.id %>" class="btn btn-primary">Show</a>
-          <a href="/feedbacks/<%= feedback.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_feedback/<%= feedback.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          
+          <% if current_user == feedback.reviewer %>
+            <a href="/feedbacks/<%= feedback.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_feedback/<%= feedback.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>

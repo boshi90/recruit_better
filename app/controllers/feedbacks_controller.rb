@@ -1,4 +1,14 @@
 class FeedbacksController < ApplicationController
+  before_action :current_user_must_be_feedback_reviewer, :only => [:edit, :update, :destroy]
+
+  def current_user_must_be_feedback_reviewer
+    feedback = Feedback.find(params[:id])
+
+    unless current_user == feedback.reviewer
+      redirect_to :back, :alert => "You are not authorized for that."
+    end
+  end
+
   def index
     @feedbacks = Feedback.all
 
