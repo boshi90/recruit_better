@@ -16,7 +16,7 @@
 
       <% @asks.each do |ask| %>
       <tr>
-        <td><%= ask.company_id %></td>
+        <td><%= ask.company.name %></td>
         <td><%= ask.question_id %></td>
         <td>
           <a href="/asks/<%= ask.id %>" class="btn btn-primary">Show</a>
