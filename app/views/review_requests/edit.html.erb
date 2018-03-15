@@ -24,7 +24,7 @@
           Applicant
         </label>
 
-        <input type="text" id="applicant_id" name="applicant_id" placeholder="Applicant" class="form-control" value="<%= @review_request.applicant_id %>">
+        <%= select_tag(:applicant_id, options_from_collection_for_select(User.all, :id, :created_at, @review_request.applicant_id), :class => "form-control") %>
       </div>
 
       <!-- Label and input for reviewer_id -->
