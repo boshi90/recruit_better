@@ -20,8 +20,11 @@
         <td><%= target.company.name %></td>
         <td>
           <a href="/targets/<%= target.id %>" class="btn btn-primary">Show</a>
-          <a href="/targets/<%= target.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_target/<%= target.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          
+          <% if current_user == target.user %>
+            <a href="/targets/<%= target.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_target/<%= target.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>
