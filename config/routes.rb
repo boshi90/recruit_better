@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Feedback resource:
+  # CREATE
+  get "/feedbacks/new", :controller => "feedbacks", :action => "new"
+  post "/create_feedback", :controller => "feedbacks", :action => "create"
+
+  # READ
+  get "/feedbacks", :controller => "feedbacks", :action => "index"
+  get "/feedbacks/:id", :controller => "feedbacks", :action => "show"
+
+  # UPDATE
+  get "/feedbacks/:id/edit", :controller => "feedbacks", :action => "edit"
+  post "/update_feedback/:id", :controller => "feedbacks", :action => "update"
+
+  # DELETE
+  get "/delete_feedback/:id", :controller => "feedbacks", :action => "destroy"
+  #------------------------------
+
   # Routes for the Ask resource:
   # CREATE
   get "/asks/new", :controller => "asks", :action => "new"

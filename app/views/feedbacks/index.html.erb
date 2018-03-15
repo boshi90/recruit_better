@@ -1,0 +1,34 @@
+<div class="page-header">
+  <h1>
+    Feedbacks
+    <a href="/feedbacks/new" class="btn btn-lg btn-success">New Feedback</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Rating</th>
+        <th>Body</th>
+        <th>Response</th>
+        <th>User</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @feedbacks.each do |feedback| %>
+      <tr>
+        <td><%= feedback.rating %></td>
+        <td><%= feedback.body %></td>
+        <td><%= feedback.response_id %></td>
+        <td><%= feedback.user_id %></td>
+        <td>
+          <a href="/feedbacks/<%= feedback.id %>" class="btn btn-primary">Show</a>
+          <a href="/feedbacks/<%= feedback.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_feedback/<%= feedback.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>
