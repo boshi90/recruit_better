@@ -22,6 +22,14 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :reviewers,
+             :through => :received_review_requests,
+             :source => :applicant
+
+  has_many   :applicants,
+             :through => :sent_review_requests,
+             :source => :reviewer
+
   has_many   :answered_questions,
              :through => :responses,
              :source => :question
