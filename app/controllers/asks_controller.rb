@@ -1,6 +1,7 @@
 class AsksController < ApplicationController
   def index
-    @asks = Ask.page(params[:page]).per(10)
+    @q = Ask.ransack(params[:q])
+    @asks = @q.result(:distinct => true).includes(:company, :question).page(params[:page]).per(10)
 
     render("asks/index.html.erb")
   end

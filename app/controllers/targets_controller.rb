@@ -10,7 +10,8 @@ class TargetsController < ApplicationController
   end
 
   def index
-    @targets = current_user.targets.page(params[:page]).per(10)
+    @q = current_user.targets.ransack(params[:q])
+      @targets = @q.result(:distinct => true).includes(:company, :user).page(params[:page]).per(10)
 
     render("targets/index.html.erb")
   end

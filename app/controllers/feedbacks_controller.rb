@@ -10,7 +10,8 @@ class FeedbacksController < ApplicationController
   end
 
   def index
-    @feedbacks = Feedback.page(params[:page]).per(10)
+    @q = Feedback.ransack(params[:q])
+    @feedbacks = @q.result(:distinct => true).includes(:response, :reviewer).page(params[:page]).per(10)
 
     render("feedbacks/index.html.erb")
   end

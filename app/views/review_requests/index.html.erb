@@ -3,6 +3,151 @@
     Review requests
     <a href="/review_requests/new" class="btn btn-lg btn-success">New Review request</a>
   </h1>
+</div><div class="row mb-1">
+  <div class="col-md-12">
+    <%= search_form_for @q, :class => collapse_search_form, :id => "review_requests_filters" do |f| %>
+      <p class="lead">Narrow results:</p>
+
+        <div class="form-group">
+  <%= f.label :response_id, "Response" %>
+  <div class="row">
+    <div class='col-md-6 mb-1'>
+      <%= f.text_field :response_id_gteq, :class => "form-control", :placeholder => "Response greater than or equal to" %>
+    </div>
+    <div class='col-md-6'>
+      <%= f.text_field :response_id_lteq, :class => "form-control", :placeholder => "Response less than or equal to" %>
+    </div>
+  </div>
+</div>
+
+<div class="form-group">
+          <%= f.label :created_at, "Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='created_atgteqPicker'>
+                  <%= f.text_field :created_at_gteq, :class => "form-control", :placeholder => "Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='created_atlteqPicker'>
+                  <%= f.text_field :created_at_lteq, :class => "form-control", :placeholder => "Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#created_atgteqPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#created_atlteqPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#created_atgteqPicker').on("dp.change", function (e) {
+                  $('#created_atlteqPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#created_atlteqPicker').on("dp.change", function (e) {
+                  $('#created_atgteqPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+        <div class="form-group">
+          <%= f.label :created_at, "User Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='applicantgteqcreated_atPicker'>
+                  <%= f.text_field :applicant_created_at_gteq, :class => "form-control", :placeholder => "User Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='applicantlteqcreated_atPicker'>
+                  <%= f.text_field :applicant_created_at_lteq, :class => "form-control", :placeholder => "User Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#applicantgteqcreated_atPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#applicantlteqcreated_atPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#applicantgteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#applicantlteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#applicantlteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#applicantgteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+<div class="form-group">
+          <%= f.label :created_at, "User Created at" %>
+          <div class="row">
+            <div class='col-md-6 mb-1'>
+              <div class='input-group date' id='reviewergteqcreated_atPicker'>
+                  <%= f.text_field :reviewer_created_at_gteq, :class => "form-control", :placeholder => "User Created at greater than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+
+            <div class='col-md-6'>
+              <div class='input-group date' id='reviewerlteqcreated_atPicker'>
+                  <%= f.text_field :reviewer_created_at_lteq, :class => "form-control", :placeholder => "User Created at less than or equal to" %>
+                  <span class="input-group-addon">
+                      <span class="glyphicon glyphicon-calendar"></span>
+                  </span>
+              </div>
+            </div>
+          </div>
+      </div>
+      <script type="text/javascript">
+          $(function () {
+              $('#reviewergteqcreated_atPicker').datetimepicker({
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#reviewerlteqcreated_atPicker').datetimepicker({
+                  useCurrent: false,
+                  format: 'YYYY-MM-DD hh:mm:SS'
+              });
+              $('#reviewergteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#reviewerlteqcreated_atPicker').data("DateTimePicker").minDate(e.date);
+              });
+              $('#reviewerlteqcreated_atPicker').on("dp.change", function (e) {
+                  $('#reviewergteqcreated_atPicker').data("DateTimePicker").maxDate(e.date);
+              });
+          });
+      </script>
+
+      <%= f.submit :class => "btn btn-primary btn-block mb-1" %>
+
+      <a href="/review_requests" class="btn btn-default btn-block mb-1">Clear filters</a>
+    <% end %>
+    <a class="btn btn-default btn-block mb-1" data-toggle="collapse" href="#review_requests_filters">
+      Show Filters
+    </a>
+  </div>
 </div>
 
 <div class="row">
