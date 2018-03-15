@@ -22,13 +22,7 @@
       <input type="hidden" name="applicant_id" value="<%= current_user.id %>">
 
       <!-- Label and input for reviewer_id -->
-      <div class="form-group">
-        <label for="reviewer_id" class="control-label">
-          Reviewer
-        </label>
-
-        <%= select_tag(:reviewer_id, options_from_collection_for_select(User.all, :id, :created_at, @review_request.reviewer_id), :class => "form-control") %>
-      </div>
+      <input type="hidden" name="reviewer_id" value="<%= current_user.id %>">
 
       <!-- Label and input for response_id -->
       <div class="form-group">
