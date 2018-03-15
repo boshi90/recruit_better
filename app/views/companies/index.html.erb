@@ -19,7 +19,7 @@
       <tr>
         <td><%= company.name %></td>
         <td><%= company.address %></td>
-        <td><%= company.logo %></td>
+        <td><img src='<%= company.logo %>' class='img-responsive'></td>
         <td>
           <a href="/companies/<%= company.id %>" class="btn btn-primary">Show</a>
           <a href="/companies/<%= company.id %>/edit" class="btn btn-warning">Edit</a>

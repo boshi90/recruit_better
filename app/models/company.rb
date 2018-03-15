@@ -1,4 +1,6 @@
 class Company < ApplicationRecord
+  mount_uploader :logo, LogoUploader
+
   # Direct associations
 
   has_many   :targets,
