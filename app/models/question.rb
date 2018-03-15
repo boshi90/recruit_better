@@ -9,6 +9,10 @@ class Question < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :users,
+             :through => :responses,
+             :source => :user
+
   has_many   :companies,
              :through => :asks,
              :source => :company

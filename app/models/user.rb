@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :answered_questions,
+             :through => :responses,
+             :source => :question
+
   has_many   :target_companies,
              :through => :targets,
              :source => :company
