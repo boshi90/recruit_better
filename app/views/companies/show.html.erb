@@ -100,7 +100,7 @@
       <% @company.targets.each do |target| %>
         <li class="list-group-item">
           <a href="/targets/<%= target.id %>">
-            <%= target.user_id %>
+            <%= target.applicant_id %>
           </a>
           <div class="btn-group btn-group-xs pull-right">
             <a href="/targets/<%= target.id %>" class="btn btn-primary">
@@ -121,8 +121,8 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+      <!-- Label and input for applicant_id -->
+      <input type="hidden" name="applicant_id" value="<%= current_user.id %>">
 
       <!-- Label and input for company_id -->
       <input type="hidden" name="company_id" value="<%= @company.id %>">

@@ -24,7 +24,7 @@
           Body
         </label>
 
-        <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="<%= @response.body %>">
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @response.body %></textarea>
       </div>
 
       <!-- Label and input for question_id -->
@@ -36,8 +36,8 @@
         <%= select_tag(:question_id, options_from_collection_for_select(Question.all, :id, :body, @response.question_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+      <!-- Label and input for applicant_id -->
+      <input type="hidden" name="applicant_id" value="<%= current_user.id %>">
 
       <button class="btn btn-success">
         Create Response

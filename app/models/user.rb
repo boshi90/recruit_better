@@ -6,29 +6,28 @@ class User < ApplicationRecord
              :foreign_key => "reviewer_id",
              :dependent => :destroy
 
-  has_many   :sent_review_requests,
-             :class_name => "ReviewRequest",
-             :foreign_key => "applicant_id",
-             :dependent => :destroy
-
-  has_many   :feedbacks,
+  has_many   :provided_feedbacks,
+             :class_name => "Feedback",
+             :foreign_key => "reviewer_id",
              :dependent => :destroy
 
   has_many   :targets,
+             :foreign_key => "applicant_id",
              :dependent => :destroy
 
   has_many   :responses,
+             :foreign_key => "applicant_id",
              :dependent => :destroy
 
   # Indirect associations
 
   has_many   :reviewers,
-             :through => :received_review_requests,
-             :source => :applicant
+             :through => :received_feedbacks,
+             :source => :reviewer
 
   has_many   :applicants,
-             :through => :sent_review_requests,
-             :source => :reviewer
+             :through => :provided_feedbacks,
+             :source => :applicant
 
   has_many   :answered_questions,
              :through => :responses,
@@ -37,6 +36,10 @@ class User < ApplicationRecord
   has_many   :target_companies,
              :through => :targets,
              :source => :company
+
+  has_many   :received_feedbacks,
+             :through => :responses,
+             :source => :feedbacks
 
   # Validations
 

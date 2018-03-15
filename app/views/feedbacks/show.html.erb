@@ -20,10 +20,10 @@
         <% end %>
       </dd>
 
-      <dt>User</dt>
+      <dt>Reviewer</dt>
       <dd>
         <% if @feedback.reviewer.present? %>
-          <a href="/users/<%= @feedback.user_id %>">
+          <a href="/users/<%= @feedback.reviewer_id %>">
             <%= @feedback.reviewer.created_at %>
           </a>
         <% end %>

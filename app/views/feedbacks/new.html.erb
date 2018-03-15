@@ -33,7 +33,7 @@
           Body
         </label>
 
-        <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="<%= @feedback.body %>">
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"><%= @feedback.body %></textarea>
       </div>
 
       <!-- Label and input for response_id -->
@@ -45,8 +45,8 @@
         <%= select_tag(:response_id, options_from_collection_for_select(Response.all, :id, :body, @feedback.response_id), :class => "form-control") %>
       </div>
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+      <!-- Label and input for reviewer_id -->
+      <input type="hidden" name="reviewer_id" value="<%= current_user.id %>">
 
       <button class="btn btn-success">
         Create Feedback

@@ -1,6 +1,6 @@
 ActiveAdmin.register Response do
 
- permit_params :body, :question_id, :user_id
+ permit_params :body, :question_id, :applicant_id
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

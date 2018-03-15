@@ -17,11 +17,11 @@
         <% end %>
       </dd>
 
-      <dt>User</dt>
+      <dt>Applicant</dt>
       <dd>
-        <% if @response.user.present? %>
-          <a href="/users/<%= @response.user_id %>">
-            <%= @response.user.created_at %>
+        <% if @response.applicant.present? %>
+          <a href="/users/<%= @response.applicant_id %>">
+            <%= @response.applicant.created_at %>
           </a>
         <% end %>
       </dd>
@@ -32,7 +32,7 @@
       <a href="/responses" class="btn btn-primary">
         Back
       </a>
-      <% if current_user == @response.user %>
+      <% if current_user == @response.applicant %>
         <a href="/responses/<%= @response.id %>/edit" class="btn btn-warning">
           Edit
         </a>
@@ -92,17 +92,71 @@
           Body
         </label>
 
-        <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="">
+        <textarea id="body" name="body" placeholder="Body" class="form-control" rows="3"></textarea>
       </div>
 
       <!-- Label and input for response_id -->
       <input type="hidden" name="response_id" value="<%= @response.id %>">
 
-      <!-- Label and input for user_id -->
-      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+      <!-- Label and input for reviewer_id -->
+      <input type="hidden" name="reviewer_id" value="<%= current_user.id %>">
 
       <button class="btn btn-block btn-success">
         Create Feedback
+      </button>
+    </form>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- A Response has many sent_review_requests -->
+
+<div class="row">
+  <div class="col-md-12">
+    <ul class="list-group">
+      <li class="list-group-item list-group-item-info">
+        Sent Review Requests
+      </li>
+
+      <% @response.sent_review_requests.each do |review_request| %>
+        <li class="list-group-item">
+          <a href="/review_requests/<%= review_request.id %>">
+            <%= review_request.created_at %>
+          </a>
+          <div class="btn-group btn-group-xs pull-right">
+            <a href="/review_requests/<%= review_request.id %>" class="btn btn-primary">
+              <i class="fa fa-search-plus"></i>
+            </a>
+            <a href="/review_requests/<%= review_request.id %>/edit" class="btn btn-warning">
+              <i class="fa fa-edit"></i>
+            </a>
+            <a href="/delete_review_request/<%= review_request.id %>" class="btn btn-danger" rel="nofollow">
+              <i class="fa fa-trash-o"></i>
+            </a>
+          </div>
+        </li>
+      <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_review_request" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for reviewer_id -->
+      <div class="form-group">
+        <label for="reviewer_id" class="control-label">
+          Reviewer
+        </label>
+
+        <%= select_tag(:reviewer_id, options_from_collection_for_select(User.all, :id, :created_at), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for response_id -->
+      <input type="hidden" name="response_id" value="<%= @response.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Review Request
       </button>
     </form>
       </li>

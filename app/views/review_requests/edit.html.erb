@@ -18,11 +18,14 @@
       <!-- Hidden input for authenticity token to protect from forgery -->
       <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
 
-      
-      
+      <!-- Label and input for reviewer_id -->
+      <div class="form-group">
+        <label for="reviewer_id" class="control-label">
+          Reviewer
+        </label>
 
-      
-      
+        <%= select_tag(:reviewer_id, options_from_collection_for_select(User.all, :id, :created_at, @review_request.reviewer_id), :class => "form-control") %>
+      </div>
 
       <!-- Label and input for response_id -->
       <div class="form-group">
@@ -30,7 +33,7 @@
           Response
         </label>
 
-        <input type="text" id="response_id" name="response_id" placeholder="Response" class="form-control" value="<%= @review_request.response_id %>">
+        <%= select_tag(:response_id, options_from_collection_for_select(Response.all, :id, :body, @review_request.response_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-warning">

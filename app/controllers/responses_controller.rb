@@ -1,22 +1,23 @@
 class ResponsesController < ApplicationController
-  before_action :current_user_must_be_response_user, :only => [:show, :edit, :update, :destroy]
+  before_action :current_user_must_be_response_applicant, :only => [:edit, :update, :destroy]
 
-  def current_user_must_be_response_user
+  def current_user_must_be_response_applicant
     response = Response.find(params[:id])
 
-    unless current_user == response.user
+    unless current_user == response.applicant
       redirect_to :back, :alert => "You are not authorized for that."
     end
   end
 
   def index
     @q = current_user.responses.ransack(params[:q])
-      @responses = @q.result(:distinct => true).includes(:question, :feedbacks, :user).page(params[:page]).per(10)
+      @responses = @q.result(:distinct => true).includes(:question, :feedbacks, :sent_review_requests, :applicant).page(params[:page]).per(10)
 
     render("responses/index.html.erb")
   end
 
   def show
+    @review_request = ReviewRequest.new
     @feedback = Feedback.new
     @response = Response.find(params[:id])
 
@@ -34,7 +35,7 @@ class ResponsesController < ApplicationController
 
     @response.body = params[:body]
     @response.question_id = params[:question_id]
-    @response.user_id = params[:user_id]
+    @response.applicant_id = params[:applicant_id]
 
     save_status = @response.save
 
@@ -63,7 +64,7 @@ class ResponsesController < ApplicationController
 
     @response.body = params[:body]
     @response.question_id = params[:question_id]
-    @response.user_id = params[:user_id]
+    @response.applicant_id = params[:applicant_id]
 
     save_status = @response.save
 

@@ -1,26 +1,7 @@
 class ReviewRequestsController < ApplicationController
-  before_action :current_user_must_be_review_request_reviewer, :only => [:edit, :update, :destroy]
-
-  def current_user_must_be_review_request_reviewer
-    review_request = ReviewRequest.find(params[:id])
-
-    unless current_user == review_request.reviewer
-      redirect_to :back, :alert => "You are not authorized for that."
-    end
-  end
-
-  before_action :current_user_must_be_review_request_applicant, :only => [:edit, :update, :destroy]
-
-  def current_user_must_be_review_request_applicant
-    review_request = ReviewRequest.find(params[:id])
-
-    unless current_user == review_request.applicant
-      redirect_to :back, :alert => "You are not authorized for that."
-    end
-  end
-
   def index
-    @review_requests = current_user.sent_review_requests.page(params[:page]).per(10)
+    @q = ReviewRequest.ransack(params[:q])
+    @review_requests = @q.result(:distinct => true).includes(:response, :reviewer).page(params[:page]).per(10)
 
     render("review_requests/index.html.erb")
   end
@@ -40,7 +21,6 @@ class ReviewRequestsController < ApplicationController
   def create
     @review_request = ReviewRequest.new
 
-    @review_request.applicant_id = params[:applicant_id]
     @review_request.reviewer_id = params[:reviewer_id]
     @review_request.response_id = params[:response_id]
 
@@ -69,7 +49,6 @@ class ReviewRequestsController < ApplicationController
   def update
     @review_request = ReviewRequest.find(params[:id])
 
-    @review_request.applicant_id = params[:applicant_id]
     @review_request.reviewer_id = params[:reviewer_id]
     @review_request.response_id = params[:response_id]
 

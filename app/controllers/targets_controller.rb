@@ -31,7 +31,7 @@ class TargetsController < ApplicationController
   def create
     @target = Target.new
 
-    @target.user_id = params[:user_id]
+    @target.applicant_id = params[:applicant_id]
     @target.company_id = params[:company_id]
 
     save_status = @target.save

@@ -11,7 +11,7 @@ class Question < ApplicationRecord
 
   has_many   :users,
              :through => :responses,
-             :source => :user
+             :source => :applicant
 
   has_many   :companies,
              :through => :asks,

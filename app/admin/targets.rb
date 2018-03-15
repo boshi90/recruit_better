@@ -1,6 +1,6 @@
 ActiveAdmin.register Target do
 
- permit_params :user_id, :company_id
+ permit_params :applicant_id, :company_id
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #

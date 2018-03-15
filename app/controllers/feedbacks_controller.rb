@@ -11,7 +11,7 @@ class FeedbacksController < ApplicationController
 
   def index
     @q = Feedback.ransack(params[:q])
-    @feedbacks = @q.result(:distinct => true).includes(:response, :reviewer).page(params[:page]).per(10)
+    @feedbacks = @q.result(:distinct => true).includes(:response, :reviewer, :applicant).page(params[:page]).per(10)
 
     render("feedbacks/index.html.erb")
   end
@@ -34,7 +34,7 @@ class FeedbacksController < ApplicationController
     @feedback.rating = params[:rating]
     @feedback.body = params[:body]
     @feedback.response_id = params[:response_id]
-    @feedback.user_id = params[:user_id]
+    @feedback.reviewer_id = params[:reviewer_id]
 
     save_status = @feedback.save
 
@@ -64,7 +64,7 @@ class FeedbacksController < ApplicationController
     @feedback.rating = params[:rating]
     @feedback.body = params[:body]
     @feedback.response_id = params[:response_id]
-    @feedback.user_id = params[:user_id]
+    @feedback.reviewer_id = params[:reviewer_id]
 
     save_status = @feedback.save
 
