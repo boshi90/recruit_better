@@ -47,8 +47,6 @@ class TargetsController < ApplicationController
 
   def update
     @target = Target.find(params[:id])
-
-    @target.user_id = params[:user_id]
     @target.company_id = params[:company_id]
 
     save_status = @target.save
