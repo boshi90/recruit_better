@@ -18,7 +18,7 @@
       <% @review_requests.each do |review_request| %>
       <tr>
         <td><%= review_request.applicant.created_at %></td>
-        <td><%= review_request.reviewer_id %></td>
+        <td><%= review_request.reviewer.created_at %></td>
         <td><%= review_request.response_id %></td>
         <td>
           <a href="/review_requests/<%= review_request.id %>" class="btn btn-primary">Show</a>
