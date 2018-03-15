@@ -16,8 +16,20 @@
 
       <% @asks.each do |ask| %>
       <tr>
-        <td><%= ask.company.name %></td>
-        <td><%= ask.question.body %></td>
+        <td>
+          <% if ask.company.present? %>
+            <a href="/companies/<%= ask.company.id %>">
+              <%= ask.company.name %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if ask.question.present? %>
+            <a href="/questions/<%= ask.question.id %>">
+              <%= ask.question.body %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/asks/<%= ask.id %>" class="btn btn-primary">Show</a>
           <a href="/asks/<%= ask.id %>/edit" class="btn btn-warning">Edit</a>

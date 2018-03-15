@@ -16,8 +16,20 @@
 
       <% @targets.each do |target| %>
       <tr>
-        <td><%= target.user.created_at %></td>
-        <td><%= target.company.name %></td>
+        <td>
+          <% if target.user.present? %>
+            <a href="/users/<%= target.user.id %>">
+              <%= target.user.created_at %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if target.company.present? %>
+            <a href="/companies/<%= target.company.id %>">
+              <%= target.company.name %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/targets/<%= target.id %>" class="btn btn-primary">Show</a>
           

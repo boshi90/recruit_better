@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Company</dt>
-      <dd><%= @ask.company_id %></dd>
+      <dd>
+        <% if @ask.company.present? %>
+          <a href="/companies/<%= @ask.company_id %>">
+            <%= @ask.company.name %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Question</dt>
-      <dd><%= @ask.question_id %></dd>
+      <dd>
+        <% if @ask.question.present? %>
+          <a href="/questions/<%= @ask.question_id %>">
+            <%= @ask.question.body %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

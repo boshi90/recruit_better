@@ -12,10 +12,22 @@
       <dd><%= @feedback.body %></dd>
 
       <dt>Response</dt>
-      <dd><%= @feedback.response_id %></dd>
+      <dd>
+        <% if @feedback.response.present? %>
+          <a href="/responses/<%= @feedback.response_id %>">
+            <%= @feedback.response.body %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>User</dt>
-      <dd><%= @feedback.user_id %></dd>
+      <dd>
+        <% if @feedback.reviewer.present? %>
+          <a href="/users/<%= @feedback.user_id %>">
+            <%= @feedback.reviewer.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

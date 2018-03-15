@@ -17,8 +17,20 @@
 
       <% @review_requests.each do |review_request| %>
       <tr>
-        <td><%= review_request.applicant.created_at %></td>
-        <td><%= review_request.reviewer.created_at %></td>
+        <td>
+          <% if review_request.applicant.present? %>
+            <a href="/users/<%= review_request.applicant.id %>">
+              <%= review_request.applicant.created_at %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if review_request.reviewer.present? %>
+            <a href="/users/<%= review_request.reviewer.id %>">
+              <%= review_request.reviewer.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td><%= review_request.response_id %></td>
         <td>
           <a href="/review_requests/<%= review_request.id %>" class="btn btn-primary">Show</a>

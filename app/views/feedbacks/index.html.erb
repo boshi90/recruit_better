@@ -20,8 +20,20 @@
       <tr>
         <td><%= feedback.rating %></td>
         <td><%= feedback.body %></td>
-        <td><%= feedback.response.body %></td>
-        <td><%= feedback.reviewer.created_at %></td>
+        <td>
+          <% if feedback.response.present? %>
+            <a href="/responses/<%= feedback.response.id %>">
+              <%= feedback.response.body %>
+            </a>
+          <% end %>
+        </td>
+        <td>
+          <% if feedback.reviewer.present? %>
+            <a href="/users/<%= feedback.reviewer.id %>">
+              <%= feedback.reviewer.created_at %>
+            </a>
+          <% end %>
+        </td>
         <td>
           <a href="/feedbacks/<%= feedback.id %>" class="btn btn-primary">Show</a>
           

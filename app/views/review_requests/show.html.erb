@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>Applicant</dt>
-      <dd><%= @review_request.applicant_id %></dd>
+      <dd>
+        <% if @review_request.applicant.present? %>
+          <a href="/users/<%= @review_request.applicant_id %>">
+            <%= @review_request.applicant.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Reviewer</dt>
-      <dd><%= @review_request.reviewer_id %></dd>
+      <dd>
+        <% if @review_request.reviewer.present? %>
+          <a href="/users/<%= @review_request.reviewer_id %>">
+            <%= @review_request.reviewer.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Response</dt>
       <dd><%= @review_request.response_id %></dd>

@@ -6,10 +6,22 @@
   <div class="col-md-12 mb-2">
     <dl class="dl-horizontal">
       <dt>User</dt>
-      <dd><%= @target.user_id %></dd>
+      <dd>
+        <% if @target.user.present? %>
+          <a href="/users/<%= @target.user_id %>">
+            <%= @target.user.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>Company</dt>
-      <dd><%= @target.company_id %></dd>
+      <dd>
+        <% if @target.company.present? %>
+          <a href="/companies/<%= @target.company_id %>">
+            <%= @target.company.name %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 

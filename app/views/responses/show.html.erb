@@ -9,10 +9,22 @@
       <dd><%= @response.body %></dd>
 
       <dt>Question</dt>
-      <dd><%= @response.question_id %></dd>
+      <dd>
+        <% if @response.question.present? %>
+          <a href="/questions/<%= @response.question_id %>">
+            <%= @response.question.body %>
+          </a>
+        <% end %>
+      </dd>
 
       <dt>User</dt>
-      <dd><%= @response.user_id %></dd>
+      <dd>
+        <% if @response.user.present? %>
+          <a href="/users/<%= @response.user_id %>">
+            <%= @response.user.created_at %>
+          </a>
+        <% end %>
+      </dd>
 
     </dl>
 
