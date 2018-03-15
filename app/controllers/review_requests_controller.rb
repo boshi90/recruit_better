@@ -10,7 +10,7 @@ class ReviewRequestsController < ApplicationController
   end
 
   def index
-    @review_requests = ReviewRequest.all
+    @review_requests = current_user.sent_review_requests.page(params[:page]).per(10)
 
     render("review_requests/index.html.erb")
   end
