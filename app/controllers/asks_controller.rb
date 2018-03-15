@@ -1,6 +1,6 @@
 class AsksController < ApplicationController
   def index
-    @asks = Ask.all
+    @asks = Ask.page(params[:page]).per(10)
 
     render("asks/index.html.erb")
   end
