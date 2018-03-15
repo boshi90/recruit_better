@@ -1,4 +1,6 @@
 ActiveAdmin.register ReviewRequest do
+
+ permit_params :applicant_id, :reviewer_id, :response_id
 # See permitted parameters documentation:
 # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
 #
