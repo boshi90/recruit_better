@@ -9,6 +9,10 @@ class Company < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :questions,
+             :through => :asks,
+             :source => :question
+
   # Validations
 
 end
