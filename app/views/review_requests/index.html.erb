@@ -22,8 +22,11 @@
         <td><%= review_request.response_id %></td>
         <td>
           <a href="/review_requests/<%= review_request.id %>" class="btn btn-primary">Show</a>
-          <a href="/review_requests/<%= review_request.id %>/edit" class="btn btn-warning">Edit</a>
-          <a href="/delete_review_request/<%= review_request.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          
+          <% if current_user == review_request.applicant %>
+            <a href="/review_requests/<%= review_request.id %>/edit" class="btn btn-warning">Edit</a>
+            <a href="/delete_review_request/<%= review_request.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+          <% end %>
         </td>
       </tr>
       <% end %>
