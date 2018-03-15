@@ -22,6 +22,10 @@ class User < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :target_companies,
+             :through => :targets,
+             :source => :company
+
   # Validations
 
   # Include default devise modules. Others available are:

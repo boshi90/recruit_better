@@ -9,6 +9,10 @@ class Company < ApplicationRecord
 
   # Indirect associations
 
+  has_many   :users,
+             :through => :targets,
+             :source => :user
+
   has_many   :questions,
              :through => :asks,
              :source => :question
