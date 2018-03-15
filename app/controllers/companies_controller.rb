@@ -1,6 +1,11 @@
 class CompaniesController < ApplicationController
   def index
     @companies = Company.all
+    @location_hash = Gmaps4rails.build_markers(@companies.where.not(:address_latitude => nil)) do |company, marker|
+      marker.lat company.address_latitude
+      marker.lng company.address_longitude
+      marker.infowindow "<h5><a href='/companies/#{company.id}'>#{company.name}</a></h5><small>#{company.address_formatted_address}</small>"
+    end
 
     render("companies/index.html.erb")
   end
