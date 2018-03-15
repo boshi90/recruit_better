@@ -33,7 +33,7 @@
           Company
         </label>
 
-        <input type="text" id="company_id" name="company_id" placeholder="Company" class="form-control" value="<%= @target.company_id %>">
+        <%= select_tag(:company_id, options_from_collection_for_select(Company.all, :id, :name, @target.company_id), :class => "form-control") %>
       </div>
 
       <button class="btn btn-warning">
