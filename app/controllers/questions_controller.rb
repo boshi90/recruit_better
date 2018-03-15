@@ -6,6 +6,8 @@ class QuestionsController < ApplicationController
   end
 
   def show
+    @ask = Ask.new
+    @response = Response.new
     @question = Question.find(params[:id])
 
     render("questions/show.html.erb")

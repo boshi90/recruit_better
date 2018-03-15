@@ -57,6 +57,29 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_ask" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for company_id -->
+      <input type="hidden" name="company_id" value="<%= @company.id %>">
+
+      <!-- Label and input for question_id -->
+      <div class="form-group">
+        <label for="question_id" class="control-label">
+          Question
+        </label>
+
+        <%= select_tag(:question_id, options_from_collection_for_select(Question.all, :id, :body), :class => "form-control") %>
+      </div>
+
+      <button class="btn btn-block btn-success">
+        Create Ask
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
@@ -88,6 +111,23 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_target" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <!-- Label and input for company_id -->
+      <input type="hidden" name="company_id" value="<%= @company.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Target
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>

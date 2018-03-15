@@ -51,6 +51,32 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_response" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for body -->
+      <div class="form-group">
+        <label for="body" class="control-label">
+          Body
+        </label>
+
+        <input type="text" id="body" name="body" placeholder="Body" class="form-control" value="">
+      </div>
+
+      <!-- Label and input for question_id -->
+      <input type="hidden" name="question_id" value="<%= @question.id %>">
+
+      <!-- Label and input for user_id -->
+      <input type="hidden" name="user_id" value="<%= current_user.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Response
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
@@ -82,6 +108,29 @@
           </div>
         </li>
       <% end %>
+
+      <li class="list-group-item">
+        <form action="/create_ask" method="post">
+      <!-- Hidden input for authenticity token to protect from forgery -->
+      <input name="authenticity_token" type="hidden" value="<%= form_authenticity_token %>">
+
+      <!-- Label and input for company_id -->
+      <div class="form-group">
+        <label for="company_id" class="control-label">
+          Company
+        </label>
+
+        <%= select_tag(:company_id, options_from_collection_for_select(Company.all, :id, :name), :class => "form-control") %>
+      </div>
+
+      <!-- Label and input for question_id -->
+      <input type="hidden" name="question_id" value="<%= @question.id %>">
+
+      <button class="btn btn-block btn-success">
+        Create Ask
+      </button>
+    </form>
+      </li>
     </ul>
   </div>
 </div>
