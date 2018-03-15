@@ -1,0 +1,30 @@
+<div class="page-header">
+  <h1>
+    Asks
+    <a href="/asks/new" class="btn btn-lg btn-success">New Ask</a>
+  </h1>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <table class="table table-striped table-hover">
+      <tr>
+        <th>Company</th>
+        <th>Question</th>
+        <th>Actions</th>
+      </tr>
+
+      <% @asks.each do |ask| %>
+      <tr>
+        <td><%= ask.company_id %></td>
+        <td><%= ask.question_id %></td>
+        <td>
+          <a href="/asks/<%= ask.id %>" class="btn btn-primary">Show</a>
+          <a href="/asks/<%= ask.id %>/edit" class="btn btn-warning">Edit</a>
+          <a href="/delete_ask/<%= ask.id %>" class="btn btn-danger" rel="nofollow">Delete</a>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+</div>

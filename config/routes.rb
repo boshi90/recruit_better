@@ -1,4 +1,21 @@
 Rails.application.routes.draw do
+  # Routes for the Ask resource:
+  # CREATE
+  get "/asks/new", :controller => "asks", :action => "new"
+  post "/create_ask", :controller => "asks", :action => "create"
+
+  # READ
+  get "/asks", :controller => "asks", :action => "index"
+  get "/asks/:id", :controller => "asks", :action => "show"
+
+  # UPDATE
+  get "/asks/:id/edit", :controller => "asks", :action => "edit"
+  post "/update_ask/:id", :controller => "asks", :action => "update"
+
+  # DELETE
+  get "/delete_ask/:id", :controller => "asks", :action => "destroy"
+  #------------------------------
+
   # Routes for the Response resource:
   # CREATE
   get "/responses/new", :controller => "responses", :action => "new"
